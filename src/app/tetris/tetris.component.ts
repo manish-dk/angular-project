@@ -104,14 +104,14 @@ export class TetrisComponent implements OnInit, AfterViewInit {
     for (let start = 0; start < this.canvas.nativeElement.width; start += this.p) {
         this.ctx.moveTo(start + 0.5, 0.5);
         this.ctx.lineTo(start, this.canvas.nativeElement.height + 5 * this.p);
-        this.ctx.strokeStyle = "grey";
+        this.ctx.strokeStyle = "black";
 
         this.ctx.stroke();
     }
     for (let start = 0; start < this.canvas.nativeElement.height + 10 * this.p; start += this.p) {
         this.ctx.moveTo(0.5, start + 0.5);
         this.ctx.lineTo(this.canvas.nativeElement.width + 3 * this.p, start);
-        this.ctx.strokeStyle = "grey";
+        this.ctx.strokeStyle = "black";
         this.ctx.stroke();
     }
 
