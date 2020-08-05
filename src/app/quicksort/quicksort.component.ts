@@ -174,7 +174,7 @@ export class QuicksortComponent implements OnInit {
     
   // }
 
-  mergeHalves(array: LineComponent[], start:number, mid:number, end:number){
+  async mergeHalves(array: LineComponent[], start:number, mid:number, end:number){
     
     let i:number = start;
     let j:number = mid+1;

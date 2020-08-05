@@ -19,10 +19,11 @@ export class TetrisComponent implements OnInit, AfterViewInit {
   x: number = 0.5 + 12 * this.p;
   y: number = 0.5;
   floor: number = 0.5 + 30 * this.p; //600.5, 380.5, 0.5 = coordinates of board
-  leftBorder:number = 0.5
-  rightBorder:number = 380.5
+  leftBorder:number = 0.5;
+  rightBorder:number = 380.5;
   tickrate:number = 500;
   score:number = 0;
+  inDelay:boolean = false;
 
   //tetrominos
   line = { state: 1, colour: "red", blocks: [[this.x, this.y], [this.x, this.y - this.p], [this.x, this.y - 2 * this.p], [this.x, this.y - 3 * this.p]] };
@@ -56,6 +57,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
   }
 
   begin():void {
+    this.changeTick();
     this.gameDown = setInterval(this.downtick, this.tickrate);
     this.gameRefresh = setInterval(this.refresh, this.tickrate);
 
@@ -79,7 +81,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
     this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     this.drawboard();
     this.drawCurrent();
-    this.checkCollision();
+    
     this.checkLine();
     this.drawPast();
     clearInterval(this.gameDown);
@@ -87,15 +89,19 @@ export class TetrisComponent implements OnInit, AfterViewInit {
     this.changeTick();
     this.gameDown = setInterval(this.downtick, this.tickrate);
     this.gameRefresh = setInterval(this.refresh, this.tickrate);
+    this.checkCollision();
+    
   }
 
   refreshFromKey = () => {
     this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     this.drawboard();
     this.drawCurrent();
-    this.checkCollision();
+    
     this.checkLine();
     this.drawPast();
+    this.checkCollision();
+    
   }
 
  drawboard = () => {
@@ -116,6 +122,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
     }
 
   }
+
 
   @HostListener('window:keydown', ['$event'])
   handleEvent = (event: KeyboardEvent) => {
@@ -139,6 +146,9 @@ export class TetrisComponent implements OnInit, AfterViewInit {
         this.refreshFromKey();
     }
     if (event.keyCode == 40) {
+        if(this.inDelay){
+            return;
+        }
         for (let i = 0; i < this.current.blocks.length; i++) {
           this.current.blocks[i][1] = this.current.blocks[i][1] < this.floor - this.p ? this.current.blocks[i][1] + this.p : this.floor;
         }
@@ -161,10 +171,10 @@ export class TetrisComponent implements OnInit, AfterViewInit {
     }
   }
 
-  storetetromino = (tetromino) => {
-    this.past.push(tetromino);
-    // tetroState = 1;
-    this.current = JSON.parse(JSON.stringify(this.tetrominos[Math.floor(Math.random() * this.tetrominos.length)]));
+  storetetromino = async (tetromino) => {
+        this.past.push(tetromino);
+        // tetroState = 1;
+        this.current = JSON.parse(JSON.stringify(this.tetrominos[Math.floor(Math.random() * this.tetrominos.length)]));
   }
 
   checkLine = () =>  {
@@ -223,6 +233,55 @@ export class TetrisComponent implements OnInit, AfterViewInit {
     window.alert(`Game Over Score: ${this.score}`);
   }
 
+  checkCollision2 =  () => {
+    for (let i = 0; i < this.past.length; i++) {
+        for (let j = 0; j < this.past[i].blocks.length; j++) {
+            if (this.past[i].blocks[j][0] == this.current.blocks[0][0] && this.past[i].blocks[j][1] == this.current.blocks[0][1] + this.p
+                || this.past[i].blocks[j][0] == this.current.blocks[1][0] && this.past[i].blocks[j][1] == this.current.blocks[1][1] + this.p
+                || this.past[i].blocks[j][0] == this.current.blocks[2][0] && this.past[i].blocks[j][1] == this.current.blocks[2][1] + this.p
+                || this.past[i].blocks[j][0] == this.current.blocks[3][0] && this.past[i].blocks[j][1] == this.current.blocks[3][1] + this.p) {
+
+                    for (let i = 0; i < 4; i++) {
+                        if (0.5 > this.current.blocks[i][1]) {
+                            this.endGame();
+                            return true;
+                        }
+                        
+                    }
+                    this.storetetromino(this.current);
+                    // this.inDelay = false;
+                    
+                    
+                    this.begin();
+                    return true;
+                    // return true;
+                    
+                    
+            }
+        }
+    }
+    for (let i = 0; i < this.current.blocks.length; i++) {
+        if (this.current.blocks[i][1] == this.floor) {
+            if(this.inDelay == false){
+
+                this.storetetromino(this.current);
+                
+                
+                this.begin();
+                return true;
+                // return true;
+            }
+            //   clearInterval(this.gameDown);
+            //   clearInterval(this.gameRefresh);
+            //   await this.delay(500);
+            //   this.storetetromino(this.current);
+            //   this.begin();
+        }
+    }
+    this.begin();
+    return false;
+  }
+
   checkCollision = async () => {
     for (let i = 0; i < this.past.length; i++) {
         for (let j = 0; j < this.past[i].blocks.length; j++) {
@@ -234,27 +293,53 @@ export class TetrisComponent implements OnInit, AfterViewInit {
                     for (let i = 0; i < 4; i++) {
                         if (0.5 > this.current.blocks[i][1]) {
                             this.endGame();
-                            return;
+                            return true;
                         }
                         
                     }
-                    // clearInterval(this.gameDown);
-                    // clearInterval(this.gameRefresh);
-                    // await this.delay(500);
-                    this.storetetromino(this.current);
-                    // this.begin();
+                    if(this.inDelay == false){
+
+                        clearInterval(this.gameDown);
+                        clearInterval(this.gameRefresh);
+                        this.inDelay = true;
+                        await this.delay(this.tickrate);
+                        // this.storetetromino(this.current);
+                        this.inDelay = false;
+                        this.checkCollision2();
+                        
+                        
+                        // this.begin();
+                        return true;
+                    }
             }
         }
     }
     for (let i = 0; i < this.current.blocks.length; i++) {
         if (this.current.blocks[i][1] == this.floor) {
-              // clearInterval(this.gameDown);
-              // clearInterval(this.gameRefresh);
-              // await this.delay(500);
-              this.storetetromino(this.current);
-              // this.begin();
+            if(this.inDelay == false){
+
+                clearInterval(this.gameDown);
+                clearInterval(this.gameRefresh);
+                this.inDelay = true;
+                await this.delay(this.tickrate);
+                // setTimeout(function() {this.storetetromino(this.current)}, this.tickrate);
+                // this.storetetromino(this.current);
+                this.inDelay = false;
+                this.checkCollision2();
+                
+                
+                // this.begin();
+                return true;
+            }
+            //   clearInterval(this.gameDown);
+            //   clearInterval(this.gameRefresh);
+            //   await this.delay(500);
+            //   this.storetetromino(this.current);
+            //   this.begin();
         }
     }
+    
+    return false;
   }
 
   checkMove = (x) => {
