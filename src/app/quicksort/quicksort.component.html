@@ -1,36 +1,52 @@
 <div class="container">
-<hr>
-<!-- <div class="container"> -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Algorithm:<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ currentSelection }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" class="btn" #algo (click)="selectAlgo(algo.innerText)" *ngFor="let algorithm of algorithms">{{algorithm}}</a>
-                </div>
-              </li>
-            <button type="button" class="btn btn-dark" (click)="sort()" [ngStyle]="{ 'margin-left.px': 50 }">Go!</button>
-          <button type="button" class="btn btn-secondary" (click)="this.ngOnInit()" [ngStyle]="{ 'margin-left.px': 20 }">Reset</button>
-            
-          </ul>
-        </div>
-      </nav>
-    <hr>
-    <div class="row" *ngFor="let line of lines" [ngStyle]="{'margin.px' : 10}">
-        <div class="col-1">
-            <fa-icon *ngIf="line.isActive" [icon]="faCoffee" class="float-right"></fa-icon>
-        </div>
-        <div class="col">
-<app-line [value]="line.value" [isMinimum]="line.isMinimum" [isActive]="line.isActive" [isSecondary]="line.isSecondary"></app-line>
-
-        </div>
-       
+  <hr>
+  <!-- <div class="container"> -->
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link">Algorithm:<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{ currentSelection }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" class="btn" #algo (click)="selectAlgo(algo.innerText)"
+              *ngFor="let algorithm of algorithms">{{algorithm}}</a>
+          </div>
+        </li>
+        <button type="button" class="btn btn-dark" (click)="sort()" [ngStyle]="{ 'margin-left.px': 50 }">Go!</button>
+        <button type="button" class="btn btn-secondary" (click)="this.ngOnInit()"
+          [ngStyle]="{ 'margin-left.px': 20 }">Reset</button>
+          <li class="nav-item active">
+            <a class="nav-link mr-auto" [ngStyle]="{ 'margin-left.px': 100 }">No. of Lines:<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{ currentArraySize }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" class="btn" #size (click)="selectArraySize(size.innerText)"
+                *ngFor="let arraysize of arraySizes">{{arraysize}}</a>
+            </div>
+          </li>
+      </ul>
     </div>
-    <hr>
+  </nav>
+  <hr>
+  <div class="row" *ngFor="let line of lines" [ngStyle]="{'margin.px' : 5}">
+    <div class="col-1">
+      <fa-icon *ngIf="line.isActive && displayChevron()" [icon]="faChevronRight" class="float-right"></fa-icon>
+    </div>
+    <div class="col">
+      <app-line [value]="line.value" [isMinimum]="line.isMinimum" [isActive]="line.isActive"
+        [isSecondary]="line.isSecondary" [height]="line.height"></app-line>
+
+    </div>
+
+  </div>
+  <hr>
 </div>

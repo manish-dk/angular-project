@@ -1,6 +1,6 @@
-<div class="col-xs-10 line text-center" [ngStyle]="{'width.px': value*8}" [ngClass]="{ 'active': isActive, 'secondaryActive': isSecondary, 'min': isMinimum }">
+<div class="col-xs-10 line text-center justify-content-center" [ngStyle]="{'width.px': value*8, 'height.px': height}" [ngClass]="{ 'active': isActive, 'secondaryActive': isSecondary, 'min': isMinimum }">
     <div class="col-xs-12" >
-        {{value}}
+        <span *ngIf="height>20" class="align-top" [style.font-size.px]="getFontSize()">{{value}}</span>
         </div>
 
 </div>

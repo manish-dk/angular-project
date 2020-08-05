@@ -1,19 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}">Home <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Algorithm Visualiser</a>
+        <a class="nav-link" routerLink="/visualiser" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}">Algorithm Visualiser</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Tetris</a>
+        <a class="nav-link" routerLink="/tetris" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}">Tetris</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
+        <a class="nav-link" href="mailto:manish_k@hotmail.co.uk" >Contact</a>
       </li>
     </ul>
   </div>
 </nav>
-<app-quicksort></app-quicksort>
+<router-outlet></router-outlet>
+<!-- <app-quicksort></app-quicksort> -->

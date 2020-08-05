@@ -1,0 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+canvas {
+    /* height: 800px;
+    width: 600px; */
+    background: black;
+    border:5px solid grey;
+}
+
+* {
+    font-family: 'Varela Round', sans-serif;
+} 

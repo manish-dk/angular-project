@@ -11,12 +11,17 @@ export class LineComponent implements OnInit {
   @Input() isMinimum:boolean;
   @Input() isActive:boolean;
   @Input() isSecondary:boolean;
+  @Input() height:number;
   constructor() { 
     
   }
 
   ngOnInit(): void {
     
+  }
+  public getFontSize(){
+    return this.height/2;
+
   }
 
 }

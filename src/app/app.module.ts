@@ -7,13 +7,19 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { QuicksortComponent } from './quicksort/quicksort.component';
 import { LineComponent } from './line/line.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { VisualiserComponent } from './visualiser/visualiser.component';
+import { TetrisComponent } from './tetris/tetris.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     QuicksortComponent,
-    LineComponent
+    LineComponent,
+    VisualiserComponent,
+    TetrisComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
