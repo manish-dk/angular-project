@@ -9,3 +9,8 @@ export enum ArraySize {
     medium = "40 Lines",
     large = "80 Lines"
 }
+
+export enum Order {
+    ascending = "Ascending",
+    descending = "Descending"
+}

@@ -10,11 +10,21 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            {{ currentSelection }}
+            {{ currentAlgorithm }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" class="btn" #algo (click)="selectAlgo(algo.innerText)"
-              *ngFor="let algorithm of algorithms">{{algorithm}}</a>
+              *ngFor="let algorithm of algorithms">{{ algorithm }}</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{ currentOrder }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" class="btn" #ordr (click)="selectOrder(ordr.innerText)"
+              *ngFor="let order of orders">{{ order }}</a>
           </div>
         </li>
         <button type="button" class="btn btn-dark" (click)="sort()" [ngStyle]="{ 'margin-left.px': 50 }">Go!</button>
@@ -30,7 +40,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" class="btn" #size (click)="selectArraySize(size.innerText)"
-                *ngFor="let arraysize of arraySizes">{{arraysize}}</a>
+                *ngFor="let arraysize of arraySizes">{{ arraysize }}</a>
             </div>
           </li>
       </ul>

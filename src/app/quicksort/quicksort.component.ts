@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LineComponent } from '../line/line.component';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { Algorithm, ArraySize } from '../enums'
+import { Algorithm, ArraySize, Order } from '../enums'
 
 @Component({
   selector: 'app-quicksort',
@@ -13,11 +13,14 @@ export class QuicksortComponent implements OnInit {
   faChevronRight = faChevronRight;
   algorithms: Algorithm[] = [Algorithm.mergeSort, Algorithm.selectionSort];
   arraySizes: ArraySize[] = [ArraySize.small, ArraySize.medium, ArraySize.large];
-  currentSelection: Algorithm = Algorithm.mergeSort;
+  orders: Order[] = [Order.ascending, Order.descending];
+  currentOrder: Order = Order.ascending;
+  currentAlgorithm: Algorithm = Algorithm.mergeSort;
   currentArraySize: ArraySize = ArraySize.medium;
   smallNumber:number = 20;
   mediumNumber:number = 40;
   largeNumber:number = 80;
+  multiplier:number = this.currentOrder == Order.ascending ? 1 : -1;
   
 
 
@@ -54,9 +57,18 @@ export class QuicksortComponent implements OnInit {
   selectAlgo(algo: string) {
     this.algorithms.forEach(element => {
       if(element.valueOf() == algo) {
-        this.currentSelection = element;
+        this.currentAlgorithm = element;
       }
     });
+  }
+
+  selectOrder(order: string) {
+    this.orders.forEach(element => {
+      if(element.valueOf() == order) {
+        this.currentOrder = element;
+      }
+    });
+    this.multiplier = this.currentOrder == Order.ascending ? 1 : -1;
   }
 
   selectArraySize(size: string) {
@@ -69,7 +81,7 @@ export class QuicksortComponent implements OnInit {
   }
 
   sort() {
-    switch(this.currentSelection) {
+    switch(this.currentAlgorithm) {
       case Algorithm.mergeSort: {
         this.mergeSort(this.lines);
         break;
@@ -86,7 +98,7 @@ export class QuicksortComponent implements OnInit {
   }
 
   displayChevron():boolean{
-    if(this.currentSelection == Algorithm.selectionSort){
+    if(this.currentAlgorithm == Algorithm.selectionSort){
       return true;
     }
     return false;
@@ -109,7 +121,7 @@ export class QuicksortComponent implements OnInit {
       let temp = array[i];
       array[i] = array[minIndex];
       array[minIndex] = temp;
-      await this.delay(100);
+      await this.delay(1000/this.currentArraySize.length);
       temp.isActive = false;
     }
   }
@@ -123,11 +135,11 @@ export class QuicksortComponent implements OnInit {
         array[i-1].isSecondary = false;
       }
       
-      await this.delay(40);
+      await this.delay(120/this.currentArraySize.length);
       if(i == array.length - 1) {
         array[i].isSecondary = false;
       }
-      if(array[i].value < array[minIndex].value) {
+      if(array[i].value * this.multiplier < array[minIndex].value * this.multiplier) {
         array[minIndex].isMinimum = false;
         array[i].isMinimum = true;
         minIndex = i;
@@ -184,7 +196,7 @@ export class QuicksortComponent implements OnInit {
     while(i <= mid && j <= end){
       array[i].isActive = true;
       array[j].isActive = true;
-      if(array[i].value <= array[j].value){  
+      if(array[i].value * this.multiplier <= array[j].value * this.multiplier){  
         array[i].isMinimum = true;
         array[i].isActive = false;
         
