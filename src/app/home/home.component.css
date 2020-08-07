@@ -2,8 +2,8 @@
 .image{
     height:40em; background-size:cover; width:auto;
     background-image:url('../../images/background.jpg');
-    margin: 0px;
-    padding: 0px;
+    /* margin: 0px; */
+    /* padding: 0px; */
     overflow-x: hidden; 
     /* background-position:50% 50%; */
     /* width: 100% */
@@ -12,4 +12,14 @@
   * {
     font-family: 'Varela Round', sans-serif;
   } 
+  .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .image-text {
+    color: #ffffff;
+    text-align: center;
+    
+  }
   
