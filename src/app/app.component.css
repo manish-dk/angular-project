@@ -1,5 +1,72 @@
-body{
-    min-width:2000px;        /* Suppose you want minimum width of 1000px */
-    width: auto !important;  /* Firefox will set width as auto */
-    width:2000px;            /* As IE6 ignores !important it will set width as 1000px; */
- }
+/*Suppose you want minimum width of 1000px*/
+/* Firefox will set width as auto */
+/* As IE6 ignores !important it will set width as 1000px; */
+/* body{
+    min-width:2000px;      
+    width: auto !important;  
+    width:2000px;             
+ } */
+
+a {
+  /* color: #262626; */
+  color: #000;
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+}
+
+.navbar {
+  border-style: solid;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background-color: aliceblue;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+  padding: 20px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.navbar ul {
+  display: flex;
+  padding-left: 100px;
+}
+.navbar ul li {
+  padding: 0 10px;
+}
+.left-menu li a {
+  padding-bottom: 2px;
+}
+#linkedin {
+  padding-right: 100px;
+}
+.left-menu li a:hover {
+  border-bottom: 2px solid #262626;
+}
+.footer {
+  border-top-style: solid;
+  background-color: aliceblue;
+  width: 100%;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: -10px;
+  clear: both;
+}

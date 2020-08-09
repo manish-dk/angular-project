@@ -1,12 +1,17 @@
+.line {
+  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .min {
-    background-color: powderblue;
+  background-color: powderblue;
 }
 
 .secondaryActive {
-    background-color: orchid;
+  background-color: orchid;
 }
 
 .active {
-    background-color: yellowgreen
+  background-color: yellowgreen;
 }
-
