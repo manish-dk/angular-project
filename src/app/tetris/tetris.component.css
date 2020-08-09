@@ -15,6 +15,10 @@ canvas {
   justify-content: space-around;
 }
 
+canvas {
+  margin: 15px 0;
+}
+
 .controls {
   margin-right: 300px;
 }
