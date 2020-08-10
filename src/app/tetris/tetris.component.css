@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
-canvas {
+.primary {
   /* height: 800px;
     width: 600px; */
   background: rgb(30, 32, 32);
@@ -13,13 +13,23 @@ canvas {
 .tetris {
   display: flex;
   justify-content: space-around;
+  min-width: 900px;
+}
+.secondary {
+  /* height: 800px;
+    width: 600px; */
+  background: rgb(30, 32, 32);
+  border: 2px solid grey;
+  align-self: flex-start;
+  margin-right: 100px;
 }
 
 canvas {
-  margin: 15px 0;
+  margin: 15px 0 15px 0;
 }
 
 .controls {
+  margin-top: 15px;
   margin-right: 300px;
 }
 
@@ -65,8 +75,22 @@ header {
   font-size: 20px;
 }
 
-@media (max-width: 1000px) {
+.test {
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 1200px) {
   .controls {
-    margin-right: 0;
+    margin-right: 150px;
+  }
+  .secondary {
+    margin-right: 150px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .controls {
+    margin-right: 50px;
   }
 }
