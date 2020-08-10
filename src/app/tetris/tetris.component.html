@@ -19,9 +19,21 @@
   </nav>
   <hr />
   <div class="tetris">
-    <canvas #canvas></canvas>
+    <canvas class="primary" #canvas></canvas>
+    <div>
+      <canvas
+        (click)="canvasClick($event)"
+        class="secondary"
+        #canvasnext
+      ></canvas>
+      <div>
+        <i class="fas fa-history"> x{{ speedBoosts }}</i>
+      </div>
+      <div>
+        <i class="fas fa-gift"> x{{ customBlocks }}</i>
+      </div>
+    </div>
     <div class="controls">
-      <h1>Controls</h1>
       <div>
         <i class="far fa-caret-square-up"> Rotate</i>
       </div>
@@ -33,6 +45,22 @@
       </div>
       <div>
         <i class="far fa-caret-square-down"> Move Down</i>
+      </div>
+      <div>
+        <i class="far"> Or WASD</i>
+      </div>
+      <br />
+      <div>
+        <i class="fas fa-history">
+          <span class="test"> Slow Time</span>
+          <div class="test">(Z)</div>
+        </i>
+      </div>
+      <div>
+        <i class="fas fa-gift">
+          <span class="test"> Custom Block</span>
+          <div class="test">(X)</div></i
+        >
       </div>
     </div>
   </div>
