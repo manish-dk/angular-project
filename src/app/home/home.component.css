@@ -4,7 +4,7 @@
   height: calc(100vh - 80px);
   background-size: cover;
   width: auto;
-  background-image: url("../../images/background2.jpeg");
+  /* background-image: url("../../images/background2.jpeg"); */
   /* margin-bottom: 60px; */
   /* padding: 0px; */
   overflow: hidden;
@@ -12,15 +12,20 @@
   /* width: 100% */
 }
 
-* {
-  font-family: "Varela Round", sans-serif;
-}
 .image {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .image-text {
-  color: #ffffff;
+  border-style: dashed;
+  border-color: aqua;
+  border-width: 2px;
+  padding: 200px;
+  color: aliceblue;
   text-align: center;
+}
+
+.fas {
+  border-style: none;
 }

@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --text-colour: aliceblue;
+  --main-bg-colour: rgb(30, 32, 32);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,11 +11,14 @@
 }
 body {
   font-family: "Segoe UI", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #fff;
+  background: rgb(30, 32, 32);
   color: #000;
   font-size: 22px;
   line-height: 1.5;
   margin-top: 60px;
+}
+hr {
+  color: aliceblue;
 }
 .container {
   width: 90%;

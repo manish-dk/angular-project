@@ -76,7 +76,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
   };
   s = {
     state: 1,
-    colour: "aquamarine",
+    colour: "powderblue",
     blocks: [
       [this.x, this.y],
       [this.x, this.y - this.p],
@@ -664,7 +664,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
         proposed.blocks[2][0] -= 2 * this.p;
         proposed.state = 1;
       }
-    } else if (proposed.colour == "aquamarine") {
+    } else if (proposed.colour == "powderblue") {
       if (proposed.state == 1) {
         proposed.blocks[2][1] -= this.p;
         proposed.blocks[3][0] -= 2 * this.p;
