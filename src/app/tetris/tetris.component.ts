@@ -295,13 +295,15 @@ export class TetrisComponent implements OnInit, AfterViewInit {
           ? this.current.blocks[i][1] + this.p
           : this.floor;
     }
-    console.log(this.tickrate);
     this.refreshFromKey();
   };
 
   changeTick() {
-    if (this.tickrate > 100) {
+    if (this.tickrate > 80) {
       this.tickrate -= 40;
+    }
+    if (this.tickrate < 80) {
+      this.tickrate = 80;
     }
     this.oldTickRate = this.tickrate;
   }

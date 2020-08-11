@@ -78,6 +78,14 @@ header {
 .test {
   font-weight: 400;
   margin-bottom: 15px;
+  font-family: "Font Awesome 5 Free";
+}
+
+.test-font {
+  font-weight: 400;
+  font-size: 12px;
+  font-family: "Font Awesome 5 Free";
+  max-width: 120px;
 }
 
 @media (max-width: 1200px) {
