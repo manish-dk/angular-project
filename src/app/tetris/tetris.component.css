@@ -4,7 +4,7 @@
   /* height: 800px;
     width: 600px; */
   background: var(--main-bg-colour);
-  border: 5px solid grey;
+  border: 5px solid aqua;
 }
 
 /* * {
@@ -20,7 +20,7 @@
   /* height: 800px;
     width: 600px; */
   background: var(--main-bg-colour);
-  border: 2px solid grey;
+  border: 2px solid aqua;
   align-self: flex-start;
   margin-right: 100px;
 }
