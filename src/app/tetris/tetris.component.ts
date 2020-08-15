@@ -47,7 +47,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
   //tetrominos
   line = {
     state: 1,
-    colour: "red",
+    colour: "tomato",
     blocks: [
       [this.x, this.y],
       [this.x, this.y - this.p],
@@ -56,7 +56,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
     ],
   };
   square = {
-    colour: "yellow",
+    colour: "gold",
     blocks: [
       [this.x, this.y],
       [this.x, this.y - this.p],
@@ -66,7 +66,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
   };
   t = {
     state: 1,
-    colour: "aqua",
+    colour: "slateblue",
     blocks: [
       [this.x, this.y],
       [this.x, this.y - this.p],
@@ -628,7 +628,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
 
   rotate = () => {
     let proposed = JSON.parse(JSON.stringify(this.current));
-    if (proposed.colour == "red") {
+    if (proposed.colour == "tomato") {
       if (proposed.state == 1) {
         proposed.blocks[0][0] -= this.p;
         proposed.blocks[0][1] -= this.p;
@@ -646,7 +646,7 @@ export class TetrisComponent implements OnInit, AfterViewInit {
         proposed.blocks[3][1] -= 2 * this.p;
         proposed.state = 1;
       }
-    } else if (proposed.colour == "aqua") {
+    } else if (proposed.colour == "slateblue") {
       if (proposed.state == 1) {
         proposed.blocks[0][1] -= 2 * this.p;
         proposed.state = 2;
