@@ -21,7 +21,7 @@ export class QuicksortComponent implements OnInit {
   ];
   orders: Order[] = [Order.ascending, Order.descending];
   currentOrder: Order = Order.ascending;
-  currentAlgorithm: Algorithm = Algorithm.mergeSort;
+  currentAlgorithm: Algorithm = Algorithm.cocktailSort;
   currentArraySize: ArraySize = ArraySize.medium;
   smallNumber: number = 40;
   mediumNumber: number = 80;
