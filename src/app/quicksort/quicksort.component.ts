@@ -250,12 +250,17 @@ export class QuicksortComponent implements OnInit {
 
   async cocktailSort(array: LineComponent[]): Promise<void> {
     let swapped: boolean = false;
+    let start: number = 0;
+    let end: number = array.length - 2;
     do {
-      for (let i: number = 0; i < array.length - 2; i++) {
+      for (let i: number = start; i < end; i++) {
         array[i].isActive = true;
         await this.delay(80 / this.currentArraySize.length);
         // array[i].isMinimum = true;
-        if (array[i].value > array[i + 1].value) {
+        if (
+          array[i].value * this.multiplier >
+          array[i + 1].value * this.multiplier
+        ) {
           // array[i].isMinimum = false;
 
           let temp: number = array[i].value;
@@ -272,11 +277,14 @@ export class QuicksortComponent implements OnInit {
         break;
       }
       swapped = false;
-      for (let i: number = array.length - 2; i > 0; i--) {
+      for (let i: number = end; i >= start; i--) {
         array[i + 1].isActive = true;
         await this.delay(80 / this.currentArraySize.length);
 
-        if (array[i].value > array[i + 1].value) {
+        if (
+          array[i].value * this.multiplier >
+          array[i + 1].value * this.multiplier
+        ) {
           // array[i].isMinimum = false;
 
           let temp: number = array[i].value;
@@ -288,6 +296,8 @@ export class QuicksortComponent implements OnInit {
         array[i].isActive = false;
         array[i].isMinimum = true;
       }
+      start += 1;
+      end -= 1;
     } while (swapped);
     for (let i: number = 0; i < array.length; i++) {
       await this.delay(80 / this.currentArraySize.length);
