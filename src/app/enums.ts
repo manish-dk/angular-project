@@ -1,16 +1,16 @@
 export enum Algorithm {
-    quickSort = "Quick Sort",
-    mergeSort = "Merge Sort",
-    selectionSort = "Selection Sort"
+  cocktailSort = "Cocktail Sort",
+  mergeSort = "Merge Sort",
+  selectionSort = "Selection Sort",
 }
 
 export enum ArraySize {
-    small = "20 Lines",
-    medium = "40 Lines",
-    large = "80 Lines"
+  small = "40 Lines",
+  medium = "80 Lines",
+  large = "160 Lines",
 }
 
 export enum Order {
-    ascending = "Ascending",
-    descending = "Descending"
+  ascending = "Ascending",
+  descending = "Descending",
 }

@@ -9,7 +9,11 @@ import { Algorithm, ArraySize, Order } from "../enums";
 })
 export class QuicksortComponent implements OnInit {
   lines: LineComponent[] = [];
-  algorithms: Algorithm[] = [Algorithm.mergeSort, Algorithm.selectionSort];
+  algorithms: Algorithm[] = [
+    Algorithm.mergeSort,
+    Algorithm.selectionSort,
+    Algorithm.cocktailSort,
+  ];
   arraySizes: ArraySize[] = [
     ArraySize.small,
     ArraySize.medium,
@@ -19,9 +23,9 @@ export class QuicksortComponent implements OnInit {
   currentOrder: Order = Order.ascending;
   currentAlgorithm: Algorithm = Algorithm.mergeSort;
   currentArraySize: ArraySize = ArraySize.medium;
-  smallNumber: number = 20;
-  mediumNumber: number = 40;
-  largeNumber: number = 80;
+  smallNumber: number = 40;
+  mediumNumber: number = 80;
+  largeNumber: number = 160;
   multiplier: number = this.currentOrder == Order.ascending ? 1 : -1;
   hover: boolean;
 
@@ -33,15 +37,15 @@ export class QuicksortComponent implements OnInit {
     switch (this.currentArraySize) {
       case ArraySize.small:
         lineNumber = this.smallNumber;
-        height = 25;
+        height = 10;
         break;
       case ArraySize.medium:
         lineNumber = this.mediumNumber;
-        height = 10;
+        height = 5;
         break;
       case ArraySize.large:
         lineNumber = this.largeNumber;
-        height = 5;
+        height = 2;
         break;
     }
     this.lines = [];
@@ -86,8 +90,8 @@ export class QuicksortComponent implements OnInit {
         this.mergeSort(this.lines);
         break;
       }
-      case Algorithm.quickSort: {
-        this.quickSort(this.lines);
+      case Algorithm.cocktailSort: {
+        this.cocktailSort(this.lines);
         break;
       }
       case Algorithm.selectionSort: {
@@ -135,7 +139,7 @@ export class QuicksortComponent implements OnInit {
         array[i - 1].isSecondary = false;
       }
 
-      await this.delay(120 / this.currentArraySize.length);
+      await this.delay(80 / this.currentArraySize.length);
       if (i == array.length - 1) {
         array[i].isSecondary = false;
       }
@@ -244,8 +248,52 @@ export class QuicksortComponent implements OnInit {
     }
   }
 
-  quickSort(array: LineComponent[]): void {
-    console.log("do quick sorty things");
+  async cocktailSort(array: LineComponent[]): Promise<void> {
+    let swapped: boolean = false;
+    do {
+      for (let i: number = 0; i < array.length - 2; i++) {
+        array[i].isActive = true;
+        await this.delay(80 / this.currentArraySize.length);
+        // array[i].isMinimum = true;
+        if (array[i].value > array[i + 1].value) {
+          // array[i].isMinimum = false;
+
+          let temp: number = array[i].value;
+          array[i].value = array[i + 1].value;
+          array[i + 1].value = temp;
+          swapped = true;
+          // array[i].isMinimum = true;
+        }
+        array[i].isActive = false;
+        array[i].isMinimum = true;
+      }
+
+      if ((swapped = false)) {
+        break;
+      }
+      swapped = false;
+      for (let i: number = array.length - 2; i > 0; i--) {
+        array[i + 1].isActive = true;
+        await this.delay(80 / this.currentArraySize.length);
+
+        if (array[i].value > array[i + 1].value) {
+          // array[i].isMinimum = false;
+
+          let temp: number = array[i].value;
+          array[i].value = array[i + 1].value;
+          array[i + 1].value = temp;
+          swapped = true;
+          // array[i + 1].isMinimum = true;
+        }
+        array[i].isActive = false;
+        array[i].isMinimum = true;
+      }
+    } while (swapped);
+    for (let i: number = 0; i < array.length; i++) {
+      await this.delay(80 / this.currentArraySize.length);
+      array[i].isActive = false;
+      array[i].isMinimum = true;
+    }
   }
 
   delay(ms: number): Promise<void> {
