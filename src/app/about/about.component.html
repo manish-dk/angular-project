@@ -1,0 +1,9 @@
+<div class="cards">
+  <app-info
+    *ngFor="let card of cards"
+    [title]="card.title"
+    [iconClass]="card.iconClass"
+    [text]="card.text"
+    (click)="createModal(card.title)"
+  ></app-info>
+</div>

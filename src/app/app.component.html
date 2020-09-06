@@ -12,6 +12,14 @@
         </li>
         <li>
           <a
+            routerLink="/about"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
             routerLink="/visualiser"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -55,6 +63,4 @@
   </nav>
 </div>
 <router-outlet></router-outlet>
-<footer class="footer">
-  Copyright &copy; 2020
-</footer>
+<footer class="footer">Copyright &copy; 2020</footer>
