@@ -2,5 +2,18 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 200px;
+  margin-top: 150px;
+  /* max-width: 1700px;
+  align-content: center; */
+}
+.cardcontainer {
+  max-width: 70%;
+  margin: auto;
+  /* display: flex;
+  justify-content: center; */
+}
+@media (max-width: 1800px) {
+  .cardcontainer {
+    max-width: 80%;
+  }
 }
